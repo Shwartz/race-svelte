@@ -4,6 +4,7 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
+		"deploy": "node ./gh-pages.js",
 		"preview": "vite preview",
 		"test": "playwright test",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -32,6 +33,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@fontsource/fira-mono": "^4.5.0"
+		"@fontsource/fira-mono": "^4.5.0",
+		"@sveltejs/adapter-static": "^1.0.0-next.43"
 	}
 }
