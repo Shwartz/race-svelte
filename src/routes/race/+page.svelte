@@ -1,13 +1,7 @@
 <script>
-import { onMount } from 'svelte';
-
-const path = "/data/test.json";
-onMount(async function() {
-	const response = await fetch(path);
-	const { data } = await response.json();
-	console.log(data);
-})
-
+import DataTable from './DataTable.svelte';
+export let currentYear = '2022';
+export let sortBy = 'all';
 </script>
 
 <svelte:head>
@@ -17,12 +11,19 @@ onMount(async function() {
 
 <section>
 	<div class='race'>
-		<p class='headline'>This Web app uses the data from the <a href='https://www.trionium.com/ashtead10k/'> Trionium
-			website </a> to create sorting by age and gender.</p>
+		<p class='headline'>This Web app uses the data from the
+			<a href='https://www.trionium.com/ashtead10k/'> Trionium website </a> to create sorting by age and gender.
+		</p>
 		<div class='race_navigation'>
-			<button type='button'>2022</button>
-			<button type='button'>2021</button>
+			<button class:active={currentYear === '2022'} on:click={() => currentYear='2022'} type='button'>2022</button>
+			<button class:active={currentYear === '2021'} on:click={() => currentYear='2021'} type='button'>2021</button>
 		</div>
+		<div class='race_navigation'>
+			<button class:active={sortBy === 'all'} on:click={() => sortBy = 'all'} type="button">Show all results</button>
+			<button class:active={sortBy === 'byAge'} on:click={() => sortBy = 'byAge'} type="button">Show by age</button>
+			<button class:active={sortBy === 'byGender'} on:click={() => sortBy = 'byGender'} type="button">Show by gender</button>
+		</div>
+		<DataTable {currentYear} {sortBy} />
 	</div>
 </section>
 
@@ -37,9 +38,9 @@ onMount(async function() {
 
     .race {
         width: 100%;
-        max-width: var(--column-width);
-        margin: var(--column-margin-top) auto 0 auto;
-        line-height: 1;
+				display: flex;
+				justify-content: center;
+				flex-direction: column;
     }
 
 		.race_navigation {
@@ -58,7 +59,7 @@ onMount(async function() {
         transition: .2s;
     }
 
-		button .current {
+		button.active {
         background: #385a86;
         box-shadow: none;
         color: #fff;
