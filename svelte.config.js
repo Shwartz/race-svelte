@@ -11,8 +11,11 @@ const config = {
 		adapter: adapter({
 			pages: 'build',
 			assets: 'build',
-			fallback: 'index.html'
-		})
+			fallback: 'index.html',
+		}),
+		paths: {
+			base: '/race-svelte',
+		}
 	}
 };
 

@@ -2,13 +2,14 @@
 	import TableTemplate from '../../components/TableTemplateAll.svelte';
 	import TableTemplateByAge from '../../components/TableTemplateByAge.svelte';
 	import TableTemplateByGender from '../../components/TableTemplateByGender.svelte';
+	import { base } from '$app/paths';
 
 	export let currentYear;
 	export let sortBy;
 	export let isLoader = false;
 	const endpoint = {
-		'2021': '/data/data-202109.json',
-		'2022': '/data/data-202209.json'
+		'2021': `${base}/data/data-202109.json`,
+		'2022': `${base}/data/data-202209.json`,
 	};
 	export let yearsLoaded = {};
 

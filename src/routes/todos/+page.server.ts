@@ -1,6 +1,7 @@
 import { error } from '@sveltejs/kit';
 import { api } from './api';
 import type { PageServerLoad, Actions } from './$types';
+import { base } from '$app/paths';
 
 type Todo = {
 	uid: string;
@@ -12,7 +13,7 @@ type Todo = {
 
 export const load: PageServerLoad = async ({ locals }) => {
 	// locals.userid comes from src/hooks.js
-	const response = await api('GET', `todos/${locals.userid}`);
+	const response = await api('GET', `${base}/todos/${locals.userid}`);
 
 	if (response.status === 404) {
 		// user hasn't created a todo list.
