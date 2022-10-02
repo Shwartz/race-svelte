@@ -14,14 +14,12 @@
 	export let yearsLoaded = {};
 
 	const getData = async () => {
-		console.log('get data run');
 		isLoader = true;
 		try {
 			const response = await fetch(endpoint[currentYear]);
 			const { data } = await response.json();
 			yearsLoaded = { ...yearsLoaded, [currentYear]: data };
 			isLoader = false;
-			console.log('yearsLoaded: ', yearsLoaded);
 		} catch (err) {
 			console.log(err);
 		}
